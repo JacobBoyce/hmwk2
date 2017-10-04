@@ -45,29 +45,41 @@ public class Hmwk2Test {
     @Test
     public void testInput_Scanner() {
         Hmwk2 app = new Hmwk2();
-        Scanner in = new Scanner("32");
-        
-        int expResult = 32;
-        int result = app.Input(in);
-        assertEquals(expResult, result);
+        Scanner in = new Scanner("11 15");
+        int[] expResult = new int[2];
+
+        expResult = app.Input(in);
+        assertEquals(expResult[0], 11);
+        assertEquals(expResult[1], 15);
     }
     
     @Test
     public void testInRange() {
         Hmwk2 app = new Hmwk2();
-        assertEquals(false,app.inRange(0));
-        assertEquals(true,app.inRange(1));
+        assertEquals(false,app.inRange(-1001));
+        assertEquals(true,app.inRange(-1000));
+        assertEquals(true,app.inRange(1000));
+        assertEquals(false,app.inRange(1001));
         assertEquals(true,app.inRange(100));
-        assertEquals(false,app.inRange(101));
-        assertEquals(true,app.inRange(32));
-    }
+    }  
     
     @Test
-    public void testMessage() {
+    public void testIsLessThan() {
         Hmwk2 app = new Hmwk2();
-        assertEquals("1 Abracadabra"+ System.lineSeparator(), app.message(1));
-        assertEquals("2 Abracadabra" + System.lineSeparator()
-                +"2 Abracadabra"+ System.lineSeparator() , 
-                app.message(2));
-    }    
+        assertEquals(false,app.isLessThan(4, 3));
+        assertEquals(true,app.isLessThan(11, 15));
+    } 
+    
+    @Test
+    public void testDoMath()
+    {
+        Hmwk2 app = new Hmwk2();
+        int r1, r2, s;
+        r1 = 4;
+        s = 3;
+        r2 = 2;
+        
+        assertEquals(r2, app.doMath(r1, s));
+       
+    }
 }
